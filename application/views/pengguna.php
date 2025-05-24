@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
+    <title>Edit Product</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -73,76 +73,63 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">CI Dasar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="#">Beranda</a>
-					</li>
-									<li class="nav-item">
-						<a class="nav-link active" href="<?php echo site_url('product');?>">Product</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="<?php echo site_url('user');?>">Pengguna</a>
-					</li>
-				</ul>
-            </div>
-        </div>
 
-        <!-- Logout Button Positioned at the Top Right -->
-        <a class="logout-btn" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-            <i class="fas fa-sign-out-alt"></i> Keluar
-        </a>
-
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container-fluid main-content p-5">
-        <h2>Product List</h2><hr>
-        <a href="<?php echo site_url('product/add_new');?>" class="btn btn-primary mb-3">+ Add</a><br>
-        <div class="row mt-3">
-            <div class="table-responsive">
-                <table id="productTable" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Nama Produk</th>
-                            <th scope="col">Harga</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $count = 0;
-                        foreach ($product->result() as $row): $count++;
-                        ?>
-                        <tr>
-                            <th scope="row"><?php echo $count;?></th>
-                            <td><?php echo $row->nama_produk;?></td>
-                            <td><?php echo number_format($row->harga_produk);?></td>
-                            <td>
-                                <a href="<?php echo site_url('product/get_edit/' .$row->id_produk);?>" class="btn btn-sm btn-success">
-                                    Update
-                                </a>
-                                <a href="<?php echo site_url('product/delete/' .$row->id_produk);?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data Product ini?')">
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                        <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">CI Dasar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Beranda</a>
+                </li>
+								<li class="nav-item">
+                    <a class="nav-link" href="<?php echo site_url('product');?>">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="<?php echo site_url('user');?>">Pengguna</a>
+                </li>
+            </ul>
         </div>
     </div>
+    <a class="logout-btn" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+					<i class="fas fa-sign-out-alt"></i> Keluar
+			</a>
+</nav>
 
-    <!-- Logout Confirmation Modal -->
+<!-- Main Content -->
+<div class="container-fluid main-content p-5">
+    <h2>Daftar Pengguna</h2><hr>
+    <a href="<?php echo site_url('user/add_new');?>" class="btn btn-primary mb-3">+ Tambah</a>
+    <div class="table-responsive">
+        <table id="productTable" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Username</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $count = 0; foreach ($users->result() as $row): $count++; ?>
+                <tr>
+                    <td><?= $count ?></td>
+                    <td><?= $row->username ?></td>
+                    <td>
+                        <a href="<?= site_url('user/get_edit/'.$row->id) ?>" class="btn btn-sm btn-success">Edit</a>
+                        <a href="<?= site_url('user/delete/'.$row->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin?')">Hapus</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Logout Confirmation Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -161,8 +148,7 @@
     </div>
     </div>
 
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

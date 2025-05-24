@@ -94,66 +94,80 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">CI Dasar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <ul class="navbar-nav">
-						<li class="nav-item">
-							<a class="nav-link" href="#">Beranda</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="<?php echo site_url('product');?>">Product</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url('user');?>">Pengguna</a>
-						</li>
-					</ul>
-                </ul>
-            </div>
-        </div>
-        <!-- Logout Button Positioned at the Top Right -->
-        <a class="logout-btn" href="<?php echo site_url('');?>">
-            <i class="fas fa-sign-out-alt"></i> Keluar
-        </a>
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container main-content mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h2 class="mb-4 text-center">Add New Product</h2>
-                <hr>
-                <form action="<?php echo site_url('product/save');?>" method="post">
-                    <div class="form-group mb-3">
-                        <label for="nama_produk" class="form-label">Nama Product</label>
-                        <input type="text" name="nama_produk" id="nama_produk" class="form-control" placeholder="Masukkan nama produk" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="harga_produk" class="form-label">Harga Product</label>
-                        <div class="input-group">
-                            
-                            <input type="number" name="harga_produk" id="harga_produk" class="form-control" placeholder="Masukkan harga produk" required>
-                        </div>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-success">
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">CI Dasar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo site_url('product');?>">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="<?php echo site_url('user');?>">Pengguna</a>
+                </li>
+            </ul>
         </div>
     </div>
+    <!-- Logout Button Positioned at the Top Right -->
+    <a class="logout-btn" href="<?php echo site_url('auth/logout');?>">
+        <i class="fas fa-sign-out-alt"></i> Keluar
+    </a>
+</nav>
+<div class="container main-content mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4 text-center">Tambah Pengguna</h2>
+            <hr>
+            <form action="<?= site_url('user/store') ?>" method="post">
+                <!-- Username -->
+                <div class="form-group mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Masukkan username" required>
+                </div>
 
-    <!-- jQuery -->
+                <!-- Password -->
+                <div class="form-group mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+                
+                <!-- Back Button -->
+                <div class="mt-3 text-center">
+                    <a href="<?= site_url('user') ?>" class="btn btn-link text-decoration-none text-muted">Kembali ke Daftar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#productTable').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json" // Bahasa Indonesia
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
+

@@ -82,17 +82,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                             Beranda
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="<?php echo site_url('product');?>">
-                            Product
-                        </a>
-                    </li>
-                </ul>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Beranda</a>
+					</li>
+									<li class="nav-item">
+						<a class="nav-link active" href="<?php echo site_url('product');?>">Product</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="<?php echo site_url('user');?>">Pengguna</a>
+					</li>
+				</ul>
             </div>
         </div>
 
